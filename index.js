@@ -24,3 +24,9 @@ form.addEventListener("submit", (e) => {
 function closeLogin() {
   document.getElementById("loginModal").style.display = "none";
 }
+
+document.getElementById("loginModal").addEventListener("click", function(e) {
+  if (e.target === this) {
+    this.style.display = "none";
+  }
+});

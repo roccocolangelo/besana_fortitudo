@@ -356,13 +356,18 @@ a[href^="mailto"]:hover {
   background: #12679f;
 }
 
+.login-box {
+  position: relative; /* 🔥 FONDAMENTALE */
+}
+
 .login-close {
   position: absolute;
   top: 10px;
-  right: 15px;
-  font-size: 24px;
+  right: 14px;
+  font-size: 22px;
   cursor: pointer;
-  color: #333;
+  color: #666;
+  font-weight: bold;
 }
 
 .login-close:hover {
