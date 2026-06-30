@@ -373,3 +373,29 @@ a[href^="mailto"]:hover {
 .login-close:hover {
   color: red;
 }
+
+#tabella-sanzioni {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#tabella-sanzioni th,
+#tabella-sanzioni td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+#tabella-sanzioni th {
+  background: #0a4c84;
+  color: white;
+}
+
+.delete-btn {
+  background: #d9534f;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}

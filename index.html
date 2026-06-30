@@ -74,8 +74,8 @@
 
                 <form id="form-sanzione">
                     <select id="giocatore">
-                    <option>Giocatore 1</option>
-                    <option>Giocatore 2</option>
+                        <option>Giocatore 1</option>
+                        <option>Giocatore 2</option>
                     </select>
 
                     <input type="date" id="data" required>
@@ -84,6 +84,23 @@
 
                     <button type="submit">Salva</button>
                 </form>
+
+                <h3>Elenco Sanzioni</h3>
+
+                <table id="tabella-sanzioni">
+                    <thead>
+                        <tr>
+                            <th>Giocatore</th>
+                            <th>Data</th>
+                            <th>Importo</th>
+                            <th>Articolo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="lista-sanzioni">
+                    </tbody>
+                </table>
             </section>
 
             <section class="box map-section">
@@ -152,18 +169,18 @@
     </footer>
 
     <div id="loginModal" class="login-modal">
-    <div class="login-box">
+        <div class="login-box">
 
-        <span class="login-close" onclick="closeLogin()">×</span>
+            <span class="login-close" onclick="closeLogin()">×</span>
 
-        <h3>Accesso</h3>
+            <h3>Accesso</h3>
 
-        <input id="user" placeholder="Username">
-        <input id="pass" type="password" placeholder="Password">
+            <input id="user" placeholder="Username">
+            <input id="pass" type="password" placeholder="Password">
 
-        <button onclick="login()">Accedi</button>
+            <button onclick="login()">Accedi</button>
 
-    </div>
+        </div>
     </div>
 
     <!-- SCRIPT -->

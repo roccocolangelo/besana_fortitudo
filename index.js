@@ -1,9 +1,9 @@
 function openModal() {
-    document.getElementById("modal").style.display = "block";
+  document.getElementById("modal").style.display = "block";
 }
 
 function closeModal() {
-    document.getElementById("modal").style.display = "none";
+  document.getElementById("modal").style.display = "none";
 }
 
 let isLogged = false;
@@ -25,7 +25,7 @@ function closeLogin() {
   document.getElementById("loginModal").style.display = "none";
 }
 
-document.getElementById("loginModal").addEventListener("click", function(e) {
+document.getElementById("loginModal").addEventListener("click", function (e) {
   if (e.target === this) {
     this.style.display = "none";
   }
@@ -53,11 +53,21 @@ async function login() {
 
   if (response.ok) {
 
-    isLogged = true;
-
     closeLogin();
 
-    salvaSanzione();
+    if (deleteId) {
+
+      await cancellaSanzione(deleteId);
+
+      deleteId = null;
+
+    } else {
+
+      isLogged = true;
+
+      salvaSanzione();
+
+    }
 
   } else {
 
@@ -96,4 +106,69 @@ async function salvaSanzione() {
     alert("❌ Errore salvataggio");
 
   }
+
+  await caricaSanzioni();
+}
+
+async function caricaSanzioni() {
+
+  const response = await fetch(
+    API + "/sanzioni"
+  );
+
+  const data = await response.json();
+
+  const tbody =
+    document.getElementById("lista-sanzioni");
+
+  tbody.innerHTML = "";
+
+  data.forEach(item => {
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${item.player}</td>
+        <td>${item.date}</td>
+        <td>€ ${item.amount}</td>
+        <td>${item.rule}</td>
+        <td>
+          <button
+            class="delete-btn"
+            onclick="richiediDelete(${item.id})">
+            Cancella
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+
+}
+
+window.addEventListener("load", caricaSanzioni);
+
+let deleteId = null;
+
+function richiediDelete(id) {
+
+  deleteId = id;
+
+  isLogged = false;
+
+  document.getElementById(
+    "loginModal"
+  ).style.display = "block";
+}
+
+async function cancellaSanzione(id) {
+
+  await fetch(
+    API + "/sanzioni/" + id,
+    {
+      method: "DELETE"
+    }
+  );
+
+  alert("✅ Sanzione eliminata");
+
+  caricaSanzioni();
 }
